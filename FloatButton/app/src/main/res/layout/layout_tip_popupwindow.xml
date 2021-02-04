@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="150dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="提示"
+        android:textColor="#000000"
+        android:textSize="12dp" />
+
+    <!--    装内容的区域，后面可以根据功能扩展 -->
+    <LinearLayout
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:text="这是一个提示这是一个提示这是一个提示这是一个提示这是一个提示这是一个提示这是一个提示"
+            android:textColor="#545454"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="#A0A0A0" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/btn_ok"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textColor="#494949"
+            android:textSize="14dp"
+            android:text="我知道了"
+            android:layout_width="match_parent"/>
+
+    </RelativeLayout>
+</LinearLayout>
