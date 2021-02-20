@@ -8,6 +8,7 @@ import com.example.floatbutton.R
 
 /**
  * description:高斯模糊？？
+ * 模糊边框
  *
  * @author zwp
  * @since 2021/1/28

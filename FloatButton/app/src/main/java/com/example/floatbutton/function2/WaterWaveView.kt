@@ -69,8 +69,6 @@ class WaterWaveView : View {
             mPaint.xfermode = xfermode
             canvas.drawBitmap(srcBitmap, mWidth / 2f - 500 + temp, mHeight / 2f - 500, mPaint)
             canvas.restoreToCount(sc)
-
-
         }
 
         if (temp > 190) {
@@ -114,15 +112,6 @@ class WaterWaveView : View {
         mWave1Path.lineTo(0f + offsetX, 800f)
         mWave1Path.close()
         srcCanvas.drawPath(mWave1Path, mPaint)
-
-//        mWave2Path.moveTo(0f + offsetX, 200f + offsetY)
-//        mWave2Path.quadTo(100f + offsetX, 150F + offsetY, 200f + offsetX, 200f + offsetY)
-//        mWave2Path.quadTo(300f + offsetX, 250f + offsetY, 400f + offsetX, 200f + offsetY)
-//        mWave2Path.quadTo(500f + offsetX, 150F + offsetY, 600F + offsetX, 200F + offsetY)
-//        mWave2Path.lineTo(600F + offsetX, 800F)
-//        mWave2Path.lineTo(0f + offsetX, 800f)
-//        mWave2Path.close()
-//        srcCanvas.drawPath(mWave2Path, mPaint)
 
         mPaint.xfermode = null
     }

@@ -3,6 +3,7 @@ package com.example.floatbutton.function5
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import androidx.core.graphics.toRectF
+import java.util.*
 
 /**
  * description:圆角Drawable
@@ -15,6 +16,7 @@ class RadiusDrawable : Drawable() {
     private var mPaint = Paint()
 
     init {
+        Base64.getEncoder()
         mPaint.style = Paint.Style.FILL_AND_STROKE
         mPaint.color = Color.BLACK
     }
