@@ -21,6 +21,8 @@
         <activity android:name=".function3.Function3Activity" />
         <activity android:name=".function4.Function4Activity" />
         <activity android:name=".function5.Function5Activity" />
+        <activity android:name=".function6.Function7Activity" />
+        <activity android:name=".function7.Function7Activity" />
     </application>
 
 </manifest>

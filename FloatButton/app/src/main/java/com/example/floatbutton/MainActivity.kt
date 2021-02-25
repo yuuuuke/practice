@@ -9,8 +9,8 @@ import com.example.floatbutton.function2.Function2Activity
 import com.example.floatbutton.function3.Function3Activity
 import com.example.floatbutton.function4.Function4Activity
 import com.example.floatbutton.function5.Function5Activity
+import com.example.floatbutton.function7.Function7Activity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mAdatepr = FunctionAdapter(this)
         function_list.adapter = mAdatepr
-        Log.v("zwp",Random().nextInt().toString())
         addView()
     }
 
@@ -50,6 +49,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, Function5Activity::class.java))
         }
         mAdatepr.addData(function5)
+
+        val function7 = FunctionBean("分组列表") {
+            startActivity(Intent(this, Function7Activity::class.java))
+        }
+        mAdatepr.addData(function7)
     }
 
 
