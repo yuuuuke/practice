@@ -20,18 +20,5 @@ class Function3Activity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_function3)
-
-
-        show.setOnClickListener {
-            blur_view.visibility = View.VISIBLE
-            val bitmap = Bitmap.createBitmap(
-                bg.width,
-                bg.height,
-                Bitmap.Config.ARGB_8888
-            )
-            val canvas = Canvas(bitmap)
-            bg.draw(canvas)
-            blur_view.mBitmap = bitmap
-        }
     }
 }

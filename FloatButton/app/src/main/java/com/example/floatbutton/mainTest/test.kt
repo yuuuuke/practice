@@ -24,10 +24,21 @@ class State{
 }
 
 fun main() {
-    val par = test()
-    var hi = State()
-    hi.isA = false
-    par.isHi = hi
-    hi.isA = true
-    par.sayHi()
+//    val par = test()
+//    var hi = State()
+//    hi.isA = false
+//    par.isHi = hi
+//    hi.isA = true
+//    par.sayHi()
+
+    try{
+//        var a:String? = null
+//        a!!.length
+        throw Exception()
+    }catch (e:Exception){
+        System.out.println("hello1")
+        return
+    }finally {
+        System.out.println("hello2")
+    }
 }

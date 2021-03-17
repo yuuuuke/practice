@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         }
         mAdatepr.addData(function2)
 
-        val function3 = FunctionBean("模糊边框") {
+        val function3 = FunctionBean("蜘蛛网") {
             startActivity(Intent(this, Function3Activity::class.java))
         }
         mAdatepr.addData(function3)
