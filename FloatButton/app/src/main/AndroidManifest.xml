@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.floatbutton">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -8,7 +13,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,13 +23,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".function1.Function1Activity" />
+        <activity android:name=".function1.Function1Activity" >
+            <intent-filter>
+                <!-- 协议部分配置 ,注意需要跟web配置相同-->
+                <data android:scheme="test"
+                    android:host="zwp"
+                    android:path="/from" />
+                <!--下面这几行也必须得设置-->
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".function2.Function2Activity" />
         <activity android:name=".function3.Function3Activity" />
         <activity android:name=".function4.Function4Activity" />
         <activity android:name=".function5.Function5Activity" />
-        <activity android:name=".function6.Function7Activity" />
+        <activity android:name=".function6.Function6Activity" />
         <activity android:name=".function7.Function7Activity" />
+        <activity android:name=".function8.Function8Activity" />
     </application>
 
 </manifest>
