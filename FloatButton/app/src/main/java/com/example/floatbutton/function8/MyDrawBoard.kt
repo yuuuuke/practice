@@ -15,9 +15,11 @@ import android.view.View
  */
 class MyDrawBoard : View {
 
-    enum class Mirrors {
-        One, Two, Three, Four
-    }
+    var mirrors = 4
+        set(value) {
+            field = value
+            path.reset()
+        }
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -68,16 +70,29 @@ class MyDrawBoard : View {
     }
 
     override fun onDraw(canvas: Canvas?) {
-        canvas?.drawPath(path, mPaint)
-        canvas?.save()
-        canvas?.rotate(90F,width/2F,height/2F)
-        canvas?.drawPath(path, mPaint)
-        canvas?.save()
-        canvas?.rotate(90F,width/2F,height/2F)
-        canvas?.drawPath(path, mPaint)
-        canvas?.save()
-        canvas?.rotate(90F,width/2F,height/2F)
-        canvas?.drawPath(path, mPaint)
+//        canvas?.drawPath(path, mPaint)
+//        canvas?.save()
+//        canvas?.rotate(90F,width/2F,height/2F)
+//        canvas?.drawPath(path, mPaint)
+//        canvas?.save()
+//        canvas?.rotate(90F,width/2F,height/2F)
+//        canvas?.drawPath(path, mPaint)
+//        canvas?.save()
+//        canvas?.rotate(90F,width/2F,height/2F)
+//        canvas?.drawPath(path, mPaint)
+//
+        if (mirrors in 1..20) {
+            var i = 0
+            canvas?.drawPath(path, mPaint)
+            while (i < mirrors) {
+                canvas?.save()
+                canvas?.drawPath(path, mPaint)
+                canvas?.rotate(360F / mirrors, width / 2F, height / 2F)
+                i++
+            }
+        } else {
+            return
+        }
         super.onDraw(canvas)
     }
 }

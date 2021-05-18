@@ -9,7 +9,7 @@ import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.example.floatbutton.R
-
+import kotlinx.android.synthetic.main.layout_function8.*
 
 
 /**
@@ -22,5 +22,6 @@ class Function8Activity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_function8)
+        board.mirrors = 15
     }
 }

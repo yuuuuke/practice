@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <com.example.floatbutton.function8.MyDrawBoard
+        android:id="@+id/board"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
