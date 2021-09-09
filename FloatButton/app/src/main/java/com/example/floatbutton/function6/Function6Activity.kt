@@ -18,5 +18,4 @@ class Function6Activity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_function6)
     }
-
 }

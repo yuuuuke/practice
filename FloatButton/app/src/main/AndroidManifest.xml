@@ -42,6 +42,9 @@
         <activity android:name=".function6.Function6Activity" />
         <activity android:name=".function7.Function7Activity" />
         <activity android:name=".function8.Function8Activity" />
+        <activity android:name=".function9.Function9Activity" />
+
+        <service android:name=".Service.MainService"/>
     </application>
 
 </manifest>

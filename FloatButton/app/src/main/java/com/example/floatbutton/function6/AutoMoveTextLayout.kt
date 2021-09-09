@@ -24,8 +24,5 @@ class AutoMoveTextLayout : FrameLayout {
 
     init {
         LayoutInflater.from(context).inflate(R.layout.auto_move_layout, this)
-        text1.post {
-
-        }
     }
 }

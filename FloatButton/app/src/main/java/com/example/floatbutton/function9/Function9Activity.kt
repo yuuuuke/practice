@@ -1,4 +1,4 @@
-package com.example.floatbutton.function8
+package com.example.floatbutton.function9
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
@@ -12,10 +12,9 @@ import kotlinx.android.synthetic.main.layout_function8.*
  * @author zwp
  * @since 2021/3/19
  */
-class Function8Activity : FragmentActivity() {
+class Function9Activity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_function8)
-        board.mirrors = 15
+        setContentView(R.layout.layout_function9)
     }
 }

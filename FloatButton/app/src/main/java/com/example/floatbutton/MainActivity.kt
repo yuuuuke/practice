@@ -1,8 +1,15 @@
 package com.example.floatbutton
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.IBinder
+import android.os.Looper
+import android.util.Log
+import com.example.floatbutton.Service.MainService
 import com.example.floatbutton.function1.Function1Activity
 import com.example.floatbutton.function2.Function2Activity
 import com.example.floatbutton.function3.Function3Activity
@@ -10,9 +17,12 @@ import com.example.floatbutton.function4.Function4Activity
 import com.example.floatbutton.function5.Function5Activity
 import com.example.floatbutton.function7.Function7Activity
 import com.example.floatbutton.function8.Function8Activity
+import com.example.floatbutton.function9.Function9Activity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.NullPointerException
+import kotlin.math.sinh
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , ServiceConnection {
 
     private lateinit var mAdapter: FunctionAdapter
 
@@ -59,5 +69,31 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, Function8Activity::class.java))
         }
         mAdapter.addData(function8)
+
+        val function9 = FunctionBean("点击跟踪") {
+            startActivity(Intent(this, Function9Activity::class.java))
+        }
+        mAdapter.addData(function9)
+
+//        Log.v("zwp", "Acname:" + Thread.currentThread().name + "/id:" + Thread.currentThread().id)
+//        val function10 = FunctionBean("Service测试") {
+//            bindService(Intent(this,MainService::class.java),this,0)
+//        }
+//        mAdapter.addData(function10)
+//        lastCustomNonConfigurationInstance?.let{
+//            Log.v("zwp",it.toString())
+//        }
+    }
+
+    override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onServiceDisconnected(name: ComponentName?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onRetainCustomNonConfigurationInstance(): Any {
+        return "my name is lastConfiguration"
     }
 }
