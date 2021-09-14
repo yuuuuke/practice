@@ -3,17 +3,13 @@ package com.example.floatbutton.function9
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-import kotlin.math.abs
-
-//import org.apache.comm
+import kotlin.math.*
 
 /**
  * description:手势跟踪
@@ -30,23 +26,30 @@ class TrackMotionView : View {
         defStyleAttr
     )
 
+    private val mPath = Path()
+
     private val rectHeight = 60
     private val rectWidth = 120
 
     //上个点的位置
     private var lastX = 0f
     private var lastY = 0f
-    private var lastAngle = 0f
+
+    private var controlX = 0f
+    private var controlY = 0f
 
     //目标点的位置
     private var targetX = 0f
     private var targetY = 0f
-    private var targetAngle = 0f
 
     //动态点的位置
-    private var dynamicX = 0f
-    private var dynamicY = 0f
-    private var dynamicAngle = 0f
+    private val dynamicPos = FloatArray(2)
+
+    //动态点的斜率
+    private val dynamicTan = FloatArray(2)
+    private var degrees = 0f
+
+    lateinit var mPathMeasure: PathMeasure
 
     private val animation: ObjectAnimator =
         ObjectAnimator.ofFloat(this, "dynamicTrack", 0f, 100f).apply {
@@ -78,16 +81,29 @@ class TrackMotionView : View {
             }
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
+                    mPath.reset()
+
                     lastX = targetX
                     lastY = targetY
-                    //执行动画
+
                     targetX = event.x
                     targetY = event.y
 
-                    lastAngle = targetAngle
+                    //计算控制点 （简陋版）
+//                    val controlX = lastX
+//                    val controlY = targetY
 
                     calculateTargetAngle()
 
+                    mPath.moveTo(lastX, lastY)
+                    mPath.quadTo(controlX, controlY, targetX, targetY)
+                    Log.v(
+                        "zwp", "lastX = $lastX,lastY = $lastY" +
+                                "controlX = $controlX,controlY = $controlY" +
+                                "targetX = $targetX,targetY = $targetY"
+                    )
+                    mPathMeasure = PathMeasure(mPath, false)
+                    //执行动画
                     animation.start()
                 }
             }
@@ -97,32 +113,34 @@ class TrackMotionView : View {
 
     //执行动画
     fun setDynamicTrack(percent: Float) {
-        dynamicX = (targetX - lastX) * percent / 100 + lastX
-        dynamicY = (targetY - lastY) * percent / 100 + lastY
-        dynamicAngle = (targetAngle - lastAngle) * percent / 100 + lastAngle
+        mPathMeasure.getPosTan(mPathMeasure.length * percent / 100f, dynamicPos, dynamicTan)
+        degrees = (atan2(dynamicTan[1], dynamicTan[0]) * 180.0 / Math.PI).toFloat()
         invalidate()
     }
 
+    //计算控制点的位置
     private fun calculateTargetAngle() {
+        //先算控制点的角度
         val adjacentEdge = abs(targetX - lastX)
         val oppositeSide = abs(targetY - lastY)
         val tanTarget = adjacentEdge / oppositeSide
-        targetAngle = Math.toDegrees(Math.atan(tanTarget.toDouble())).toFloat()
+        val targetAngle = Math.toDegrees(atan(tanTarget.toDouble())).toFloat()
 
-        targetAngle = if (targetX >= lastX) {
-            if (targetY >= lastY) {
-                180 - targetAngle
+        //斜边
+        val hypotenuse = sqrt(adjacentEdge * adjacentEdge + oppositeSide * oppositeSide)
+
+        //控制点的偏移
+        val offset = hypotenuse / cos(targetAngle.toDouble()) / 2
+
+        //全部走上面
+        controlX = if (targetX > lastX) (lastX + offset).toFloat() else (targetX + offset).toFloat()
+        controlY =
+            if ((targetX > targetY && lastX > lastY) || (targetX < targetY && lastX < lastY)) {
+                if (targetX > lastX) lastY else targetY
             } else {
-                180 + targetAngle
+                if (targetX > lastX) targetY else lastY
             }
-        } else {
-            if (targetY >= lastY) {
-                targetAngle
-            } else {
-                360 - targetAngle
-            }
-        }
-        Log.v("Zwp", "angle = $targetAngle")
+        Log.v("zwp", "controlX = $controlX , controlY = $controlY")
     }
 
     /**
@@ -130,20 +148,21 @@ class TrackMotionView : View {
      */
     private fun drawTarget(canvas: Canvas) {
 
-        canvas.rotate(360 - dynamicAngle, dynamicX, dynamicY)
-        Log.v("Zwp", "dynamicAngle = $dynamicAngle")
+//        canvas.rotate(degrees, dynamicPos[0], dynamicPos[1])
+        canvas.drawPath(mPath, mPaint)
+
         //先画个方块
         canvas.drawRect(
-            dynamicX,
-            dynamicY - rectHeight / 2,
-            dynamicX + rectWidth,
-            dynamicY + rectHeight / 2,
+            dynamicPos[0],
+            dynamicPos[1] - rectHeight / 2,
+            dynamicPos[0] + rectWidth,
+            dynamicPos[1] + rectHeight / 2,
             mPaint
         )
         //头
         canvas.drawCircle(
-            dynamicX,
-            dynamicY,
+            dynamicPos[0],
+            dynamicPos[1],
             20f,
             mPaint
         )

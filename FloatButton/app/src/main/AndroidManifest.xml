@@ -43,6 +43,7 @@
         <activity android:name=".function7.Function7Activity" />
         <activity android:name=".function8.Function8Activity" />
         <activity android:name=".function9.Function9Activity" />
+        <activity android:name=".function10.Function10Activity" />
 
         <service android:name=".Service.MainService"/>
     </application>

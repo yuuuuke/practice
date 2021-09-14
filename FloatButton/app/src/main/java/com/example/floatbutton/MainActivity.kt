@@ -11,6 +11,7 @@ import android.os.Looper
 import android.util.Log
 import com.example.floatbutton.Service.MainService
 import com.example.floatbutton.function1.Function1Activity
+import com.example.floatbutton.function10.Function10Activity
 import com.example.floatbutton.function2.Function2Activity
 import com.example.floatbutton.function3.Function3Activity
 import com.example.floatbutton.function4.Function4Activity
@@ -74,6 +75,11 @@ class MainActivity : AppCompatActivity() , ServiceConnection {
             startActivity(Intent(this, Function9Activity::class.java))
         }
         mAdapter.addData(function9)
+
+        val function10 = FunctionBean("测试") {
+            startActivity(Intent(this, Function10Activity::class.java))
+        }
+        mAdapter.addData(function10)
 
 //        Log.v("zwp", "Acname:" + Thread.currentThread().name + "/id:" + Thread.currentThread().id)
 //        val function10 = FunctionBean("Service测试") {
