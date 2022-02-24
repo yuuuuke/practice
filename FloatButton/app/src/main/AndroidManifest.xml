@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -44,6 +44,10 @@
         <activity android:name=".function8.Function8Activity" />
         <activity android:name=".function9.Function9Activity" />
         <activity android:name=".function10.Function10Activity" />
+        <activity android:name=".function11.Function11Activity" />
+        <activity android:name=".function12.Function12Activity" />
+        <activity android:name=".function12.CoordinatorNormalActivity" />
+        <activity android:name=".function12.CoordinatorActivity" />
 
         <service android:name=".Service.MainService"/>
     </application>

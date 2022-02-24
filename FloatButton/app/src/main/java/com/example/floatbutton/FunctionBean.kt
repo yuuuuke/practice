@@ -6,6 +6,16 @@ package com.example.floatbutton
  * @author zwp
  * @since 2021/1/26
  */
-data class FunctionBean(val desc:String,
-                        val onClick:() -> Unit
-                        )
+data class FunctionBean(
+    val desc: String,
+    val onClick: () -> Unit
+) {
+
+
+    protected constructor() : this("", {
+
+    }) {
+
+    }
+
+}

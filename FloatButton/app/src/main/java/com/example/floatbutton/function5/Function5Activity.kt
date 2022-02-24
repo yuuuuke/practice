@@ -1,6 +1,8 @@
 package com.example.floatbutton.function5
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.floatbutton.R
@@ -17,7 +19,13 @@ class Function5Activity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_function5)
-        iv.setImageDrawable(RadiusDrawable())
-    }
+//        iv.setImageDrawable(RadiusDrawable())
 
+
+        input.setOnFocusChangeListener(object : View.OnFocusChangeListener {
+            override fun onFocusChange(v: View?, hasFocus: Boolean) {
+                Log.v("zwp", "hasFocus + $hasFocus")
+            }
+        })
+    }
 }

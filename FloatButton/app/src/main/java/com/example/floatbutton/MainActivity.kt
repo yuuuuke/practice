@@ -1,7 +1,9 @@
 package com.example.floatbutton
 
+import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Intent
+import android.content.IntentSender
 import android.content.ServiceConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,10 +14,13 @@ import android.util.Log
 import com.example.floatbutton.Service.MainService
 import com.example.floatbutton.function1.Function1Activity
 import com.example.floatbutton.function10.Function10Activity
+import com.example.floatbutton.function11.Function11Activity
+import com.example.floatbutton.function12.Function12Activity
 import com.example.floatbutton.function2.Function2Activity
 import com.example.floatbutton.function3.Function3Activity
 import com.example.floatbutton.function4.Function4Activity
 import com.example.floatbutton.function5.Function5Activity
+import com.example.floatbutton.function6.Function6Activity
 import com.example.floatbutton.function7.Function7Activity
 import com.example.floatbutton.function8.Function8Activity
 import com.example.floatbutton.function9.Function9Activity
@@ -81,6 +86,21 @@ class MainActivity : AppCompatActivity() , ServiceConnection {
         }
         mAdapter.addData(function10)
 
+        val function11 = FunctionBean("DiffUtils") {
+            startActivity(Intent(this, Function11Activity::class.java))
+        }
+        mAdapter.addData(function11)
+
+        val function12 = FunctionBean("折叠布局") {
+            startActivity(Intent(this, Function12Activity::class.java))
+        }
+        mAdapter.addData(function12)
+
+        val function6 = FunctionBean("铁汁") {
+            startActivity(Intent(this, Function6Activity::class.java))
+        }
+        mAdapter.addData(function6)
+
 //        Log.v("zwp", "Acname:" + Thread.currentThread().name + "/id:" + Thread.currentThread().id)
 //        val function10 = FunctionBean("Service测试") {
 //            bindService(Intent(this,MainService::class.java),this,0)
@@ -90,6 +110,14 @@ class MainActivity : AppCompatActivity() , ServiceConnection {
 //            Log.v("zwp",it.toString())
 //        }
     }
+//
+//    private fun createIntentSender(): IntentSender {
+//        val intent = Intent(this, MainActivity::class.java).apply {
+//            action = ACTION_INSTALL
+//        }
+//        val pending = PendingIntent.getActivity(this, 0, intent, 0)
+//        return pending.intentSender
+//    }
 
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
         TODO("Not yet implemented")
@@ -101,5 +129,19 @@ class MainActivity : AppCompatActivity() , ServiceConnection {
 
     override fun onRetainCustomNonConfigurationInstance(): Any {
         return "my name is lastConfiguration"
+    }
+
+    override fun onResume() {
+        LogV("onResume")
+        super.onResume()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        LogV("onDestroy")
+        super.onDestroy()
     }
 }
