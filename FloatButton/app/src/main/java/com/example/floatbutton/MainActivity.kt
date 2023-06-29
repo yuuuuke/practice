@@ -1,21 +1,22 @@
 package com.example.floatbutton
 
-import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Intent
-import android.content.IntentSender
 import android.content.ServiceConnection
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.graphics.Point
 import android.os.Bundle
-import android.os.Handler
 import android.os.IBinder
-import android.os.Looper
 import android.util.Log
-import com.example.floatbutton.Service.MainService
+import android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+import android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.example.floatbutton.function1.Function1Activity
 import com.example.floatbutton.function10.Function10Activity
 import com.example.floatbutton.function11.Function11Activity
 import com.example.floatbutton.function12.Function12Activity
+import com.example.floatbutton.function13.Function13Activity
 import com.example.floatbutton.function2.Function2Activity
 import com.example.floatbutton.function3.Function3Activity
 import com.example.floatbutton.function4.Function4Activity
@@ -25,19 +26,29 @@ import com.example.floatbutton.function7.Function7Activity
 import com.example.floatbutton.function8.Function8Activity
 import com.example.floatbutton.function9.Function9Activity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.NullPointerException
-import kotlin.math.sinh
 
-class MainActivity : AppCompatActivity() , ServiceConnection {
+class MainActivity : AppCompatActivity(), ServiceConnection {
 
     private lateinit var mAdapter: FunctionAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        window.statusBarColor = Color.TRANSPARENT
+        val frameLayout = findViewById<FrameLayout>(R.id.root_layout)
+        frameLayout.systemUiVisibility = (SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
         mAdapter = FunctionAdapter(this)
         function_list.adapter = mAdapter
         addView()
+        val display = getWindowManager().getDefaultDisplay();
+        val point = Point();
+        display.getSize(point);
+        val width = display.getWidth();
+        val height = display.getHeight();
+        Log.v("zwp","$width//"+height)
+        val scale: Float = getResources().getDisplayMetrics().density
+        Log.v("zwp","${height/scale+0.5f}///")
     }
 
     private fun addView() {
@@ -100,6 +111,11 @@ class MainActivity : AppCompatActivity() , ServiceConnection {
             startActivity(Intent(this, Function6Activity::class.java))
         }
         mAdapter.addData(function6)
+
+        val function13 = FunctionBean("LayoutManager") {
+            startActivity(Intent(this, Function13Activity::class.java))
+        }
+        mAdapter.addData(function13)
 
 //        Log.v("zwp", "Acname:" + Thread.currentThread().name + "/id:" + Thread.currentThread().id)
 //        val function10 = FunctionBean("Service测试") {

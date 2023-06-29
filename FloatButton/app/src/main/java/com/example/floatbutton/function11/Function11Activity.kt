@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.floatbutton.R
+import com.example.floatbutton.hook.hookOnClickListener
 
 /**
  * description: DiffUtils 学习的 Demo
@@ -47,5 +48,6 @@ class Function11Activity : AppCompatActivity() {
             val diffResult = DiffUtil.calculateDiff(DiffCallBack(oldData, newData), true)
             diffResult.dispatchUpdatesTo(mAdapter)
         }
+//        hookOnClickListener(btn)
     }
 }

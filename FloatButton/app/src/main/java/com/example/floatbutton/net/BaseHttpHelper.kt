@@ -24,6 +24,7 @@ object BaseHttpHelper {
     private val retrofit by lazy {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://ltwzp.yizong.cn/ajax/")
             .client(client)
             .build()
     }

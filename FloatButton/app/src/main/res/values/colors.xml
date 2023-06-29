@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#03A9F4</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="translate">#00000000</color>
 
     <color name="wave_color">#6F00BCD4</color>
     <color name="wave_color2">#00BCD4</color>
