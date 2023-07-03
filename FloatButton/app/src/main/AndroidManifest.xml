@@ -50,6 +50,7 @@
         <activity android:name=".function12.CoordinatorActivity" />
         <activity android:name=".function13.Function13Activity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".function15.Function15Activity" />
 
         <service android:name=".Service.MainService"/>
     </application>

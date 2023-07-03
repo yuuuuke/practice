@@ -17,6 +17,7 @@ import com.example.floatbutton.function10.Function10Activity
 import com.example.floatbutton.function11.Function11Activity
 import com.example.floatbutton.function12.Function12Activity
 import com.example.floatbutton.function13.Function13Activity
+import com.example.floatbutton.function15.Function15Activity
 import com.example.floatbutton.function2.Function2Activity
 import com.example.floatbutton.function3.Function3Activity
 import com.example.floatbutton.function4.Function4Activity
@@ -46,9 +47,9 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
         display.getSize(point);
         val width = display.getWidth();
         val height = display.getHeight();
-        Log.v("zwp","$width//"+height)
+        Log.v("zwp", "$width//" + height)
         val scale: Float = getResources().getDisplayMetrics().density
-        Log.v("zwp","${height/scale+0.5f}///")
+        Log.v("zwp", "${height / scale + 0.5f}///")
     }
 
     private fun addView() {
@@ -110,12 +111,20 @@ class MainActivity : AppCompatActivity(), ServiceConnection {
         val function6 = FunctionBean("铁汁") {
             startActivity(Intent(this, Function6Activity::class.java))
         }
+
+
+
         mAdapter.addData(function6)
 
         val function13 = FunctionBean("LayoutManager") {
             startActivity(Intent(this, Function13Activity::class.java))
         }
         mAdapter.addData(function13)
+
+        val function15 = FunctionBean("LayoutManager2") {
+            startActivity(Intent(this, Function15Activity::class.java))
+        }
+        mAdapter.addData(function15)
 
 //        Log.v("zwp", "Acname:" + Thread.currentThread().name + "/id:" + Thread.currentThread().id)
 //        val function10 = FunctionBean("Service测试") {
